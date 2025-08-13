@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core Colors */
+    --color-background: #FAFAF9; /* warm off-white */
+    --color-foreground: #1C1B1A; /* near-black with warm undertones */
+    --color-border: #F5F5F4; /* subtle warm gray */
+    --color-input: #FFFFFF; /* white */
+    --color-ring: #2D5016; /* deep forest green */
+    --color-card: #FFFFFF; /* white */
+    --color-card-foreground: #1C1B1A; /* near-black with warm undertones */
+    --color-popover: #FFFFFF; /* white */
+    --color-popover-foreground: #1C1B1A; /* near-black with warm undertones */
+    --color-muted: #F5F5F4; /* subtle warm gray */
+    --color-muted-foreground: #6B6B6B; /* medium gray */
+
+    /* Primary Colors */
+    --color-primary: #2D5016; /* deep forest green */
+    --color-primary-foreground: #FFFFFF; /* white */
+
+    /* Secondary Colors */
+    --color-secondary: #8B4513; /* rich earth brown */
+    --color-secondary-foreground: #FFFFFF; /* white */
+
+    /* Accent Colors */
+    --color-accent: #FF8C00; /* vibrant harvest orange */
+    --color-accent-foreground: #FFFFFF; /* white */
+
+    /* State Colors */
+    --color-success: #16A34A; /* vibrant healthy green */
+    --color-success-foreground: #FFFFFF; /* white */
+    --color-warning: #EAB308; /* golden yellow */
+    --color-warning-foreground: #1C1B1A; /* near-black with warm undertones */
+    --color-error: #DC2626; /* strong red */
+    --color-error-foreground: #FFFFFF; /* white */
+    --color-destructive: #DC2626; /* strong red */
+    --color-destructive-foreground: #FFFFFF; /* white */
+
+    /* Surface Colors */
+    --color-surface: #F5F5F4; /* subtle warm gray */
+    --color-surface-foreground: #1C1B1A; /* near-black with warm undertones */
+
+    /* Text Colors */
+    --color-text-primary: #1C1B1A; /* near-black with warm undertones */
+    --color-text-secondary: #6B6B6B; /* medium gray */
+
+    /* Shadow Colors */
+    --shadow-sm: 0 1px 3px rgba(45, 80, 22, 0.1);
+    --shadow-md: 0 4px 6px rgba(45, 80, 22, 0.05);
+    --shadow-lg: 0 10px 15px rgba(45, 80, 22, 0.1);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+  }
+
+  body {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+
+  .font-caption {
+    font-family: 'Nunito Sans', sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer utilities {
+  .shadow-agricultural-sm {
+    box-shadow: var(--shadow-sm);
+  }
+
+  .shadow-agricultural-md {
+    box-shadow: var(--shadow-md);
+  }
+
+  .shadow-agricultural-lg {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .backdrop-blur-agricultural {
+    backdrop-filter: blur(8px) saturate(180%);
+  }
+
+  .transition-agricultural {
+    transition: all 200ms ease-out;
+  }
+
+  .transition-spatial {
+    transition: all 300ms ease-in-out;
+  }
+}
