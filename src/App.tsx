@@ -1,14 +1,21 @@
-import { useState, useRef } from 'react'
-import './App.css'
+import { useState, useRef, ChangeEvent } from 'react'; // TypeScript: Import specific types
+import './App.css';
+
+// --- TypeScript: Define a type for our prediction object ---
+interface Prediction {
+  class_name: string;
+  confidence: string;
+  error?: string; // The '?' makes the error property optional
+}
 
 function App() {
-  const [image, setImage] = useState(null);
-  const [prediction, setPrediction] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const fileInputRef = useRef(null);
+  // --- TypeScript: Provide types for our state variables ---
+  const [image, setImage] = useState<string | null>(null);
+  const [prediction, setPrediction] = useState<Prediction | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null); // Ref for an input element
 
-  // --- Information about the diseases ---
   const diseaseInfo = {
     cmd: {
       name: 'Cassava Mosaic Disease',
@@ -23,11 +30,12 @@ function App() {
     }
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
+  // --- TypeScript: Add a type for the event 'e' ---
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]; // Use optional chaining for safety
     if (file) {
       setImage(URL.createObjectURL(file));
-      setPrediction(null); // Reset previous prediction
+      setPrediction(null);
       setError(null);
     }
   };
@@ -75,7 +83,6 @@ function App() {
     }
   };
 
-  // --- Function to render the result ---
   const renderResult = () => {
     if (!prediction) return null;
 
@@ -89,7 +96,10 @@ function App() {
       );
     }
 
-    const info = diseaseInfo[prediction.class_name];
+    // --- TypeScript: Type assertion for safety ---
+    const infoKey = prediction.class_name as keyof typeof diseaseInfo;
+    const info = diseaseInfo[infoKey];
+
     return (
       <div className="result-box">
         <h3>Analysis Result</h3>
@@ -166,4 +176,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
