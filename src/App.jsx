@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react'
 import './App.css'
 
@@ -56,7 +55,6 @@ function App() {
       }
 
       const data = await response.json();
-      // The backend now sends a structured response
       setPrediction(data.prediction); 
 
     } catch (err) {
@@ -81,17 +79,16 @@ function App() {
   const renderResult = () => {
     if (!prediction) return null;
 
-    // Case 1: The model is uncertain or returned an error
     if (prediction.class_name === 'Uncertain') {
       return (
         <div className="result-box uncertain">
           <h3>Analysis Result</h3>
-          <p>{prediction.error || 'Could not confidently identify a cassava leaf in the image. Please use a clearer image.'}</p>
+          <p>{prediction.error}</p>
+          <p className="prediction-confidence">Confidence: <strong>{prediction.confidence}</strong></p>
         </div>
       );
     }
 
-    // Case 2: A confident prediction was made
     const info = diseaseInfo[prediction.class_name];
     return (
       <div className="result-box">
